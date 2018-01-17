@@ -45,10 +45,10 @@ $(document).ready(function() {
   // Bind the click event of each element to a function
   $(".back").on("click", function(e) {
     if (memoryGame.pickedCards.length < 2) {
-      $(this).addClass("visible");
       memoryGame.pickedCards.push($(this).attr("name"));
-      if (memoryGame.pickedCards.length == 2) {
-        $(".card").addClass("blocked");
+      $(this).addClass("visible");
+      if (memoryGame.pickedCards.length > 1) {
+        $('.front, .back').addClass('blocked');
         if (
           memoryGame.checkIfPair(
             memoryGame.pickedCards[0],
@@ -64,7 +64,7 @@ $(document).ready(function() {
         $("#pairs_clicked").html(memoryGame.pairsClicked);
         $("#pairs_guessed").html(memoryGame.pairsGuessed);
         memoryGame.pickedCards = [];
-        $(".card").removeClass("blocked");
+        $('.front,.back').removeClass('blocked');
       }
     }
     if (memoryGame.finished()) {
